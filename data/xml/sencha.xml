@@ -1,0 +1,869 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+	<channel>
+		<title>Sencha Forum</title>
+		<link>http://www.sencha.com/forum/</link>
+		<description>Sencha Forums</description>
+		<language>en</language>
+		<lastBuildDate>Wed, 03 Apr 2013 04:40:06 GMT</lastBuildDate>
+		<generator>vBulletin</generator>
+		<ttl>60</ttl>
+		<image>
+			<url>http://www.sencha.com/forum/images/misc/rss.png</url>
+			<title>Sencha Forum</title>
+			<link>http://www.sencha.com/forum/</link>
+		</image>
+		<item>
+			<title><![CDATA[Grid's Filter feature works wrong with Lockable column]]></title>
+			<link>http://www.sencha.com/forum/showthread.php?260314-Grid-s-Filter-feature-works-wrong-with-Lockable-column&amp;goto=newpost</link>
+			<pubDate>Wed, 03 Apr 2013 03:10:26 GMT</pubDate>
+			<description>_*REQUIRED INFORMATION*_ 
+ 
+ 
+*_Ext version tested:_* 
+ 
+* Ext 4.2.0.663 
+ 
+ 
+ 
+*_Browser versions tested against:_*</description>
+			<content><![CDATA[<div><u><b><font color="green">REQUIRED INFORMATION</font></b></u><br />
+<br />
+<br />
+<b><u>Ext version tested:</u></b><br />
+<ul><li>Ext 4.2.0.663</li>
+</ul><br />
+<br />
+<b><u>Browser versions tested against:</u></b><br />
+<ul><li> IE9</li>
+<li>FF19.0</li>
+</ul><br />
+<br />
+<b><u>Description:</u></b><br />
+<ul><li>Grid's Filter feature works wrong with Lockable column</li>
+</ul><br />
+<br />
+<b><u>Steps to reproduce the problem:</u></b><br />
+<ul><li> Create the GridPanel with a locked column</li>
+<li> Add <i>filters</i> feature to the Grid</li>
+<li>Set filter for the locked column</li>
+<li> Unlock column using column header menu</li>
+</ul><br />
+<br />
+<b><u>The result that was expected:</u></b><br />
+<ul><li> Header menu of the column should have menu item for filtering</li>
+</ul><br />
+<br />
+<b><u>The result that occurs instead:</u></b><br />
+<ul><li>Header menu of the column doesn't have menu item for filtering</li>
+</ul><br />
+<br />
+<b><u>Test Case:</u></b><br />
+<br />
+<div class="bbcode_container">
+	<div class="bbcode_description">Code:</div>
+	<hr /><code class="bbcode_code">&nbsp; &nbsp; &lt;html&gt;<br />
+&nbsp; &nbsp; &lt;head&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;link rel=&quot;stylesheet&quot; href=&quot;resources/ext-theme-gray/ext-theme-gray-all.css&quot; type=&quot;text/css&quot; /&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;script type=&quot;text/javascript&quot; src=&quot;ext-all-debug.js&quot;&gt;&lt;/script&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;script type=&quot;text/javascript&quot; src=&quot;gridfilters.js&quot;&gt;&lt;/script&gt;<br />
+&nbsp; &nbsp; &lt;/head&gt;<br />
+&nbsp; &nbsp; <br />
+&nbsp; &nbsp; &lt;body id=&quot;ext-body&quot;&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;script&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Ext.onReady(function () {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Ext.create(&quot;Ext.grid.Panel&quot;, {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; border: false,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; renderTo: Ext.getBody(),<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; columns: {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; items: [{<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; dataIndex: &quot;Id&quot;,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; text: &quot;ID&quot;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }, {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; locked: true,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; dataIndex: &quot;Company&quot;,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; text: &quot;Company&quot;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ]<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; store: Ext.create(&quot;Ext.data.Store&quot;, {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; model: Ext.define(Ext.id(), {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; extend: &quot;Ext.data.Model&quot;,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; fields: [{<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; name: &quot;Id&quot;,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; type: &quot;int&quot;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }, {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; name: &quot;Company&quot;,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; type: &quot;string&quot;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ],<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; idProperty: &quot;Id&quot;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }),<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; autoLoad: true,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sorters: [{<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; direction: &quot;ASC&quot;,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; property: &quot;Company&quot;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ],<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pageSize: 10,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; proxy: {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; data: [{<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;Id&quot;: 1,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &quot;Company&quot;:&quot;3m Co&quot;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ],<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; type: 'memory'<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }),<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; features: [{<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ftype: &quot;filters&quot;,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; local: true,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; filters: [{<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; dataIndex: &quot;Company&quot;,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; type: &quot;string&quot;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ]<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ]<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; });<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; });<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/script&gt;<br />
+&nbsp; &nbsp; &lt;/body&gt;<br />
+&lt;/html&gt;</code><hr />
+</div> <br />
+<u><b><font color="green">HELPFUL INFORMATION</font></b></u><br />
+<br />
+<b><u>Screenshot or Video:</u></b><br />
+<ul><li><a href="http://www.sencha.com/forum/attachment.php?attachmentid=42849"  title="Name:  
+Views: 
+Size:  ">Attachment 42849</a></li>
+</ul><br />
+<br />
+<b><u>Additional CSS used:</u></b><br />
+<ul><li>only default ext-all.css</li>
+</ul><br />
+<br />
+<b><u>Operating System:</u></b><br />
+<ul><li>Win7 Pro</li>
+</ul></div>
+
+
+	<div style="padding:10px">
+
+	
+
+	
+
+	
+		<fieldset class="fieldset">
+			<legend>Attached Images</legend>
+			<ul>
+			<li>
+	<img class="inlineimg" src="/png.gif" alt="File Type: png" />
+	<a href="http://www.sencha.com/forum/attachment.php?attachmentid=42849&amp;d=1364958416">1.PNG&lrm;</a> 
+(19.1 KB)
+</li> 
+			</ul>
+			</fieldset>
+	
+
+	
+
+	</div>
+ ]]></content>
+			<category domain="http://www.sencha.com/forum/forumdisplay.php?80-Ext-Bugs">Ext:Bugs</category>
+			<author>Baidaly</author>
+			<guid isPermaLink="true">http://www.sencha.com/forum/showthread.php?260314-Grid-s-Filter-feature-works-wrong-with-Lockable-column</guid>
+		</item>
+		<item>
+			<title>Sencha Desktop Packager executable</title>
+			<link>http://www.sencha.com/forum/showthread.php?260310-Sencha-Desktop-Packager-executable&amp;goto=newpost</link>
+			<pubDate>Wed, 03 Apr 2013 02:13:25 GMT</pubDate>
+			<description>Hi, 
+ 
+I have built a desktop version of my extjs app using Sencha desktop packager trial. It has created an output folder with a lot of dll files...</description>
+			<content><![CDATA[<div><span style="font-family: Arial">Hi,<br />
+<br />
+I have built a desktop version of my extjs app using Sencha desktop packager trial. It has created an output folder with a lot of dll files and an .exe file. The executable runs ok when i open it from within this folder but once i move the .exe outside it no longer runs. So it seems it is dependent on the other files generated along with it.</span><ol class="decimal"><li>Am i doing something wrong here or is it supposed to be like this? Is it possible to get a single executable that will run on client machine?</li>
+<li>Secondly after installation, is it possible to do automatic updates (or at least prompt for an update) based on version number?</li>
+</ol><span style="font-family: Arial">Thanks,</span></div>
+
+ ]]></content>
+			<category domain="http://www.sencha.com/forum/forumdisplay.php?112-Desktop-Packager">Desktop Packager</category>
+			<author>megaurav2002</author>
+			<guid isPermaLink="true">http://www.sencha.com/forum/showthread.php?260310-Sencha-Desktop-Packager-executable</guid>
+		</item>
+		<item>
+			<title>Inheritance is not working as expected</title>
+			<link>http://www.sencha.com/forum/showthread.php?260307-Inheritance-is-not-working-as-expected&amp;goto=newpost</link>
+			<pubDate>Wed, 03 Apr 2013 00:56:22 GMT</pubDate>
+			<description>Please see in the example below that there is a Base Class List where tbar is defined and has one element in the array. 
+  
+Now, there are 2...</description>
+			<content><![CDATA[<div>Please see in the example below that there is a Base Class <i>List</i> where <i>tbar</i> is defined and has one element in the array.<br />
+ <br />
+Now, there are 2 sub-classes : <i>RejectList</i> &amp; <i>AssignedList</i> which extend base class <i>List</i>. <br />
+<br />
+<i>RejectList</i> class adds/pushes one more element '<i>verticalId</i>' to the <i>tbar</i> array<br />
+<i>AssignedList</i> class doesnt add anything and simply extends the base class.<br />
+<br />
+Now, the added  element '<i>verticalId</i>' should have only been added to the <i>RejectList</i> but it is also showing up on the <i>AssignedList</i> as well.<br />
+<br />
+However, we do not want this extra element in the <i>AssignedList</i><br />
+Can you please share thoughts on how this can be achieved.<br />
+<br />
+Please see the code here:<br />
+<b>BASE CLASS </b><br />
+<br />
+<font size="2"><i>Ext.define('ABC.view.lead.List' ,{<br />
+    extend: 'Ext.grid.Panel',<br />
+    alias : 'widget.leadlist',<br />
+<br />
+    config: {<br />
+        store: abcstore<br />
+    },<br />
+    constructor: function( config ) {<br />
+        this.initConfig( config );<br />
+        return this.callParent( arguments );<br />
+    },<br />
+    viewConfig: {<br />
+        enableTextSelection: true<br />
+    },<br />
+    tbar: [{<br />
+        xtype: 'textfield',<br />
+        itemId: 'nameLike',<br />
+        emptyText: 'Filter by Name',<br />
+    }]<br />
+});<br />
+<br />
+</i><font size="3"><b>SUB CLASS A<br />
+</b></font><i>Ext.define('ABC.view.lead.RejectList' ,{<br />
+    extend: 'ABC.view.lead.List',<br />
+    alias : 'widget.rejectleadlist',<br />
+<br />
+<br />
+    initComponent: function() {<br />
+        var grid = this;<br />
+        this.tbar.push(<br />
+           {<br />
+            itemId: 'verticalId',<br />
+            xtype: 'verticalcombo',<br />
+           }<br />
+         );<br />
+        this.callParent(arguments);<br />
+    }<br />
+});<br />
+</i></font><br />
+<br />
+<b>SUB CLASS B<br />
+</b><font size="2">Ext.define('ABC.view.lead.AssignedList' ,{<br />
+    extend: 'ABC.view.lead.List',<br />
+    alias : 'widget.assignedleadlist',<br />
+<br />
+    initComponent: function() {<br />
+        this.callParent(arguments);<br />
+    }<br />
+});</font></div>
+
+ ]]></content>
+			<category domain="http://www.sencha.com/forum/forumdisplay.php?87-Ext-Q-amp-A"><![CDATA[Ext: Q&A]]></category>
+			<author>khurania</author>
+			<guid isPermaLink="true">http://www.sencha.com/forum/showthread.php?260307-Inheritance-is-not-working-as-expected</guid>
+		</item>
+		<item>
+			<title><![CDATA[[DUP] 4.2.0 - Invalid form field tip styles broken]]></title>
+			<link>http://www.sencha.com/forum/showthread.php?260306-4.2.0-Invalid-form-field-tip-styles-broken&amp;goto=newpost</link>
+			<pubDate>Wed, 03 Apr 2013 00:18:48 GMT</pubDate>
+			<description>*_Ext version tested:_* 
+* Ext 4.2 
+ 
+*_Browser versions tested against:_* 
+* Chrome 26 
+* IE10 
+ 
+*_Description:_* 
+* The invalid tip on form fields...</description>
+			<content><![CDATA[<div><b><u>Ext version tested:</u></b><ul><li>Ext 4.2</li>
+</ul><b><u>Browser versions tested against:</u></b><ul><li>Chrome 26</li>
+<li>IE10</li>
+</ul><b><u>Description:</u></b><ul><li>The invalid tip on form fields styles are broken</li>
+</ul><b><u>Steps to reproduce the problem:</u></b><ul><li> Go to the examples in the docs and click in a field that has required data and click out of the field, then hover over invalid tip icon</li>
+</ul><b><u>The result that was expected:</u></b><ul><li>Being able to read the error message</li>
+</ul><b><u>The result that occurs instead:</u></b><ul><li>Different amount of cutting off between Chrome and IE but both have the message at least partially cut off</li>
+</ul><b>See this URL for live test case:</b> <a href="http://docs.sencha.com/ext-js/4-2/#!/example/form/dynamic.html" target="_blank">http://docs.sencha.com/ext-js/4-2/#!...m/dynamic.html</a></div>
+
+ ]]></content>
+			<category domain="http://www.sencha.com/forum/forumdisplay.php?80-Ext-Bugs">Ext:Bugs</category>
+			<author>Teemac</author>
+			<guid isPermaLink="true">http://www.sencha.com/forum/showthread.php?260306-4.2.0-Invalid-form-field-tip-styles-broken</guid>
+		</item>
+		<item>
+			<title>If item in TreeStore is leaf show a different template</title>
+			<link>http://www.sencha.com/forum/showthread.php?260305-If-item-in-TreeStore-is-leaf-show-a-different-template&amp;goto=newpost</link>
+			<pubDate>Tue, 02 Apr 2013 23:13:11 GMT</pubDate>
+			<description>Hi guys, 
+ 
+I have a nested list displaying a treestore.  In my getItemTextTpl function I would like to output a different a template based on...</description>
+			<content><![CDATA[<div>Hi guys,<br />
+<br />
+I have a nested list displaying a treestore.  In my getItemTextTpl function I would like to output a different a template based on whether the item in the treestore is a leaf or not.  <br />
+<br />
+The following always returns the first template even though record.get('leaf') can be either equal to false or true.<br />
+<br />
+<div class="bbcode_container">
+	<div class="bbcode_description">Code:</div>
+	<hr /><code class="bbcode_code">getItemTextTpl : function(node) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; treeStore.each(function(record, index, animated) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if(record.get('leaf') == false) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; console.log('Index : ' + index + ' Is leaf: ' + record.get('leaf'));<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; template = '&lt;div class=&quot;branch&quot;&gt;{text}&lt;/div&gt;';<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }else{<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; console.log('Index : ' + index + ' Is leaf: ' + record.get('leaf'));<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; template = '&lt;div class=&quot;leaf&quot;&gt;{text}&lt;/div&gt;';<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; });<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return template;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; },</code><hr />
+</div> Here is the console log:<br />
+<br />
+Index : 1 Is leaf: false <br />
+Index : 2 Is leaf: true <br />
+Index : 3 Is leaf: true <br />
+Index : 4 Is leaf: false <br />
+Index : 5 Is leaf: false <br />
+Index : 6 Is leaf: false <br />
+Index : 7 Is leaf: false <br />
+Index : 8 Is leaf: false <br />
+Index : 9 Is leaf: false <br />
+Index : 10 Is leaf: false <br />
+Index : 11 Is leaf: false <br />
+Index : 12 Is leaf: false <br />
+<br />
+Thanks guys.</div>
+
+ ]]></content>
+			<category domain="http://www.sencha.com/forum/forumdisplay.php?90-Sencha-Touch-2.x-Q-amp-A"><![CDATA[Sencha Touch 2.x: Q&A]]></category>
+			<author>IainP</author>
+			<guid isPermaLink="true">http://www.sencha.com/forum/showthread.php?260305-If-item-in-TreeStore-is-leaf-show-a-different-template</guid>
+		</item>
+		<item>
+			<title>Extnd examples are now online!</title>
+			<link>http://www.sencha.com/forum/showthread.php?260304-Extnd-examples-are-now-online!&amp;goto=newpost</link>
+			<pubDate>Tue, 02 Apr 2013 23:06:38 GMT</pubDate>
+			<description>We have updated the old demos database and posted it at http://examples.extnd.com so take a look a let us know what you think.</description>
+			<content><![CDATA[<div>We have updated the old demos database and posted it at <a href="http://examples.extnd.com" target="_blank" rel="nofollow">http://examples.extnd.com</a> so take a look a let us know what you think.</div>
+
+ ]]></content>
+			<category domain="http://www.sencha.com/forum/forumdisplay.php?15-Ext.nd-for-Notes-Domino">Ext.nd for Notes/Domino</category>
+			<author>jratcliff</author>
+			<guid isPermaLink="true">http://www.sencha.com/forum/showthread.php?260304-Extnd-examples-are-now-online!</guid>
+		</item>
+		<item>
+			<title>Inserting custom DataItem in Dataview Sencha Touch 2</title>
+			<link>http://www.sencha.com/forum/showthread.php?260301-Inserting-custom-DataItem-in-Dataview-Sencha-Touch-2&amp;goto=newpost</link>
+			<pubDate>Tue, 02 Apr 2013 22:31:53 GMT</pubDate>
+			<description>Hi,  
+ 
+Is there a way to insert a custom item in between dataItems in Dataview?   
+ 
+I have a list and each dataItem has a few components (this is...</description>
+			<content><![CDATA[<div>Hi, <br />
+<br />
+Is there a way to insert a custom item in between dataItems in Dataview?  <br />
+<br />
+I have a list and each dataItem has a few components (this is why I do not use List). I want to add a single row between the list's raws which will have a different design and different components (imagine an advertisement raw or a coupon raw that I can insert between two items) <br />
+<br />
+Do you have any idea how can I achieve that?</div>
+
+ ]]></content>
+			<category domain="http://www.sencha.com/forum/forumdisplay.php?90-Sencha-Touch-2.x-Q-amp-A"><![CDATA[Sencha Touch 2.x: Q&A]]></category>
+			<author>tombr</author>
+			<guid isPermaLink="true">http://www.sencha.com/forum/showthread.php?260301-Inserting-custom-DataItem-in-Dataview-Sencha-Touch-2</guid>
+		</item>
+		<item>
+			<title>CDN Links</title>
+			<link>http://www.sencha.com/forum/showthread.php?260300-CDN-Links&amp;goto=newpost</link>
+			<pubDate>Tue, 02 Apr 2013 22:02:26 GMT</pubDate>
+			<description>We are working to normalize the CDN links to the different releases beginning with Ext JS 4.2.0. The links will be nested within ext, the license and...</description>
+			<content><![CDATA[<div>We are working to normalize the CDN links to the different releases beginning with Ext JS 4.2.0. The links will be nested within ext, the license and version. For 4.2.0, the links for the GPL and Commercial versions are as follows:<br />
+<br />
+<a href="http://cdn.sencha.com/ext/gpl/4.2.0/" target="_blank">http://cdn.sencha.com/ext/gpl/4.2.0/</a><br />
+<a href="http://cdn.sencha.com/ext/commercial/4.2.0/" target="_blank">http://cdn.sencha.com/ext/commercial/4.2.0/</a><br />
+<br />
+Going forward, this is the format we will be using but will only be for the public releases. Support only releases will not be deployed to CDN but can be downloaded via the support portal at <a href="http://support.sencha.com/" target="_blank">http://support.sencha.com/</a></div>
+
+ ]]></content>
+			<category domain="http://www.sencha.com/forum/forumdisplay.php?87-Ext-Q-amp-A"><![CDATA[Ext: Q&A]]></category>
+			<author>mitchellsimoens</author>
+			<guid isPermaLink="true">http://www.sencha.com/forum/showthread.php?260300-CDN-Links</guid>
+		</item>
+		<item>
+			<title>Documentation?</title>
+			<link>http://www.sencha.com/forum/showthread.php?260299-Documentation&amp;goto=newpost</link>
+			<pubDate>Tue, 02 Apr 2013 21:46:53 GMT</pubDate>
+			<description><![CDATA[I'm in the process to evaluate GXT3 for a customer's new project but I have to say I'm quite frustrated since it seems to be the case that there is...]]></description>
+			<content><![CDATA[<div>I'm in the process to evaluate GXT3 for a customer's new project but I have to say I'm quite frustrated since it seems to be the case that there is no (openly) available documentation for GXT3 available; not even for the most basic things like how to determine the actual style names within the widgets and so on.<br />
+<br />
+Now my question: Am I blind or is there nothing such like this basic docs?</div>
+
+ ]]></content>
+			<category domain="http://www.sencha.com/forum/forumdisplay.php?101-Sencha-GXT-Discussion">Sencha GXT Discussion</category>
+			<author>dubaut</author>
+			<guid isPermaLink="true">http://www.sencha.com/forum/showthread.php?260299-Documentation</guid>
+		</item>
+		<item>
+			<title>Grid does not size properly</title>
+			<link>http://www.sencha.com/forum/showthread.php?260297-Grid-does-not-size-properly&amp;goto=newpost</link>
+			<pubDate>Tue, 02 Apr 2013 21:41:32 GMT</pubDate>
+			<description>Hi Guys, 
+  
+I have created a page that contains 2 grids. The problem is that the grids do not take the complete space in the layout. I have included...</description>
+			<content><![CDATA[<div>Hi Guys,<br />
+ <br />
+I have created a page that contains 2 grids. The problem is that the grids do not take the complete space in the layout. I have included the UiBinder files and the onModuleLoad method as well as a screen shot.<br />
+<br />
+Is there a correct way to get the grids to use the complete screen real-estate, it seams very straight forward problem, so I am not sure why it is so un-intuitive to program?<br />
+<br />
+<a href="http://www.sencha.com/forum/attachment.php?attachmentid=42848"  title="Name:  
+Views: 
+Size:  ">Attachment 42848</a><br />
+<br />
+================= OnModuleLoad<br />
+public void onModuleLoad() {<br />
+        Viewport viewport = new Viewport();<br />
+        viewport.add(new DatasetAdministration());<br />
+        viewport.setEnableScroll(true);<br />
+        RootLayoutPanel.get().add(viewport);<br />
+    }<br />
+<br />
+======================DatasetAdministation<br />
+&lt;!DOCTYPE ui:UiBinder SYSTEM &quot;http://dl.google.com/gwt/DTD/xhtml.ent&quot;&gt;<br />
+&lt;ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'<br />
+             xmlns:client='urn:import:com.sencha.gxt.widget.core.client'<br />
+             xmlns:container='urn:import:com.sencha.gxt.widget.core.client.container'<br />
+             xmlns:control='urn:import:com.firecracker.hotelsfa.client.system.dataset.screen'&gt;<br />
+<br />
+<br />
+    &lt;!-- Create the messages interface for i18n !--&gt;<br />
+    &lt;ui:with type=&quot;com.firecracker.hotelsfa.client.system.dataset.screen.DatasetAdministrationMessages&quot;<br />
+             field=&quot;messages&quot;/&gt;<br />
+<br />
+<br />
+    &lt;!-- Create the dataset administration service !--&gt;<br />
+    &lt;ui:with type=&quot;com.firecracker.hotelsfa.client.system.dataset.DatasetAdminServiceAsync&quot;<br />
+             field=&quot;datasetAdminServiceAsync&quot;/&gt;<br />
+<br />
+<br />
+    &lt;!-- Create the user administration tab item config !--&gt;<br />
+    &lt;ui:with type=&quot;com.sencha.gxt.widget.core.client.TabItemConfig&quot; field=&quot;userAdministrationTabItemConfig&quot;&gt;<br />
+        &lt;ui:attributes text=&quot;{messages.userAdministrationLabel}&quot; enabled=&quot;true&quot;/&gt;<br />
+    &lt;/ui:with&gt;<br />
+<br />
+<br />
+    &lt;!-- Create the region administration tab item config !--&gt;<br />
+    &lt;ui:with type=&quot;com.sencha.gxt.widget.core.client.TabItemConfig&quot; field=&quot;regionAdministrationTabItemConfig&quot;&gt;<br />
+        &lt;ui:attributes text=&quot;{messages.regionAdministrationLabel}&quot; enabled=&quot;true&quot;/&gt;<br />
+    &lt;/ui:with&gt;<br />
+<br />
+<br />
+    &lt;!-- Create the location administration tab item config !--&gt;<br />
+    &lt;ui:with type=&quot;com.sencha.gxt.widget.core.client.TabItemConfig&quot; field=&quot;locationAdministrationTabItemConfig&quot;&gt;<br />
+        &lt;ui:attributes text=&quot;{messages.locationAdministrationLabel}&quot; enabled=&quot;true&quot;/&gt;<br />
+    &lt;/ui:with&gt;<br />
+<br />
+<br />
+    &lt;!-- Create the horizontal container layout data !--&gt;<br />
+    &lt;ui:with type=&quot;com.sencha.gxt.widget.core.client.container.HorizontalLayoutContainer.HorizontalLayoutData&quot;<br />
+             field=&quot;horizontalLayoutData&quot;&gt;<br />
+        &lt;ui:attributes width=&quot;1&quot; height=&quot;1&quot;/&gt;<br />
+    &lt;/ui:with&gt;<br />
+<br />
+<br />
+    &lt;!-- Create the vertical container layout data !--&gt;<br />
+    &lt;ui:with type=&quot;com.sencha.gxt.widget.core.client.container.VerticalLayoutContainer.VerticalLayoutData&quot;<br />
+             field=&quot;verticalLayoutData&quot;&gt;<br />
+        &lt;ui:attributes width=&quot;1&quot; height=&quot;1&quot;/&gt;<br />
+    &lt;/ui:with&gt;<br />
+<br />
+<br />
+    &lt;!-- Create the widget !--&gt;<br />
+    &lt;container:HorizontalLayoutContainer&gt;<br />
+        &lt;container:child  layoutData=&quot;{horizontalLayoutData}&quot;&gt;<br />
+            &lt;control:DatasetGrid datasetAdminServiceAsync=&quot;{datasetAdminServiceAsync}&quot; ui:field=&quot;datasetGrid&quot;/&gt;<br />
+        &lt;/container:child&gt;<br />
+        &lt;container:child layoutData=&quot;{horizontalLayoutData}&quot;&gt;<br />
+            &lt;container:VerticalLayoutContainer&gt;<br />
+                &lt;container:child layoutData=&quot;{verticalLayoutData}&quot;&gt;<br />
+                    &lt;control:DatasetDetails ui:field=&quot;datasetDetails&quot;/&gt;<br />
+                &lt;/container:child&gt;<br />
+                &lt;container:child layoutData=&quot;{verticalLayoutData}&quot;&gt;<br />
+                    &lt;client:PlainTabPanel&gt;<br />
+                        &lt;client:child config=&quot;{userAdministrationTabItemConfig}&quot;&gt;<br />
+                            &lt;control:UserAdministration datasetAdminServiceAsync=&quot;{datasetAdminServiceAsync}&quot;<br />
+                                                        ui:field=&quot;userAdministration&quot;/&gt;<br />
+                        &lt;/client:child&gt;<br />
+                        &lt;client:child config=&quot;{regionAdministrationTabItemConfig}&quot;&gt;<br />
+                            &lt;control:RegionAdministration datasetAdminServiceAsync=&quot;{datasetAdminServiceAsync}&quot;<br />
+                                                          ui:field=&quot;regionAdministration&quot;/&gt;<br />
+                        &lt;/client:child&gt;<br />
+                        &lt;client:child config=&quot;{locationAdministrationTabItemConfig}&quot;&gt;<br />
+                            &lt;control:LocationAdministration datasetAdminServiceAsync=&quot;{datasetAdminServiceAsync}&quot;<br />
+                                                            ui:field=&quot;locationAdministration&quot;/&gt;<br />
+                        &lt;/client:child&gt;<br />
+                    &lt;/client:PlainTabPanel&gt;<br />
+                &lt;/container:child&gt;<br />
+            &lt;/container:VerticalLayoutContainer&gt;<br />
+        &lt;/container:child&gt;<br />
+    &lt;/container:HorizontalLayoutContainer&gt;<br />
+&lt;/ui:UiBinder&gt;<br />
+<br />
+<br />
+============================DatasetDetails<br />
+&lt;!DOCTYPE ui:UiBinder SYSTEM &quot;http://dl.google.com/gwt/DTD/xhtml.ent&quot;&gt;<br />
+&lt;ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'<br />
+             xmlns:client='urn:import:com.sencha.gxt.widget.core.client'<br />
+             xmlns:container='urn:import:com.sencha.gxt.widget.core.client.container'<br />
+             xmlns:field='urn:import:com.sencha.gxt.widget.core.client.form'&gt;<br />
+<br />
+<br />
+    &lt;!-- Create the messages interface for i18n !--&gt;<br />
+    &lt;ui:with type=&quot;com.firecracker.hotelsfa.client.system.dataset.screen.DatasetDetailsMessages&quot; field=&quot;messages&quot;/&gt;<br />
+<br />
+<br />
+    &lt;!-- Create the number properties editor !--&gt;<br />
+    &lt;ui:with type=&quot;com.sencha.gxt.widget.core.client.form.NumberPropertyEditor&quot; field=&quot;datasetIdPropertyEditor&quot;/&gt;<br />
+<br />
+<br />
+    &lt;!-- Create the widget !--&gt;<br />
+    &lt;client:FramedPanel headingText=&quot;{messages.datasetProperties}&quot;&gt;<br />
+        &lt;container:VerticalLayoutContainer&gt;<br />
+            &lt;container:child&gt;<br />
+                &lt;field:FieldLabel text=&quot;{messages.datasetIdLabel}&quot;&gt;<br />
+                    &lt;field:widget&gt;<br />
+                        &lt;field:NumberField editor=&quot;{datasetIdPropertyEditor}&quot; readOnly=&quot;true&quot;<br />
+                                           emptyText=&quot;{messages.datasetIdLabel}...&quot; ui:field=&quot;datasetId&quot;/&gt;<br />
+                    &lt;/field:widget&gt;<br />
+                &lt;/field:FieldLabel&gt;<br />
+            &lt;/container:child&gt;<br />
+            &lt;container:child&gt;<br />
+                &lt;field:FieldLabel text=&quot;{messages.datasetNameLabel}&quot;&gt;<br />
+                    &lt;field:widget&gt;<br />
+                        &lt;field:TextField emptyText=&quot;{messages.datasetNameLabel}...&quot; ui:field=&quot;datasetName&quot;/&gt;<br />
+                    &lt;/field:widget&gt;<br />
+                &lt;/field:FieldLabel&gt;<br />
+            &lt;/container:child&gt;<br />
+            &lt;container:child&gt;<br />
+                &lt;field:FieldLabel text=&quot;{messages.validUntilLabel}&quot;&gt;<br />
+                    &lt;field:widget&gt;<br />
+                        &lt;field:DateField emptyText=&quot;{messages.validUntilLabel}...&quot; ui:field=&quot;validUntil&quot;/&gt;<br />
+                    &lt;/field:widget&gt;<br />
+                &lt;/field:FieldLabel&gt;<br />
+            &lt;/container:child&gt;<br />
+        &lt;/container:VerticalLayoutContainer&gt;<br />
+    &lt;/client:FramedPanel&gt;<br />
+&lt;/ui:UiBinder&gt;<br />
+<br />
+<br />
+<br />
+<br />
+================================DatasetGrid<br />
+&lt;!DOCTYPE ui:UiBinder SYSTEM &quot;http://dl.google.com/gwt/DTD/xhtml.ent&quot;&gt;<br />
+&lt;ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'<br />
+             xmlns:container='urn:import:com.sencha.gxt.widget.core.client.container'<br />
+             xmlns:toolbar='urn:import:com.sencha.gxt.widget.core.client.toolbar'<br />
+             xmlns:button='urn:import:com.sencha.gxt.widget.core.client.button'<br />
+             xmlns:grid='urn:import:com.sencha.gxt.widget.core.client.grid'&gt;<br />
+<br />
+<br />
+    &lt;!-- Create the messages interface for i18n !--&gt;<br />
+    &lt;ui:with type=&quot;com.firecracker.hotelsfa.client.system.dataset.screen.DatasetGridMessages&quot; field=&quot;messages&quot;/&gt;<br />
+<br />
+<br />
+    &lt;!-- Create the dataset store for the grid !--&gt;<br />
+    &lt;ui:with type=&quot;com.sencha.gxt.data.shared.ListStore&quot; field=&quot;datasetStore&quot;/&gt;<br />
+<br />
+<br />
+    &lt;!-- Create the column model !--&gt;<br />
+    &lt;ui:with type=&quot;com.sencha.gxt.widget.core.client.grid.ColumnModel&quot; field=&quot;columnModel&quot;/&gt;<br />
+<br />
+<br />
+    &lt;!-- Create the grid view !--&gt;<br />
+    &lt;ui:with type=&quot;com.sencha.gxt.widget.core.client.grid.GridView&quot; field=&quot;gridView&quot;&gt;<br />
+        &lt;ui:attributes stripeRows=&quot;true&quot; columnLines=&quot;true&quot;/&gt;<br />
+    &lt;/ui:with&gt;<br />
+<br />
+<br />
+    &lt;!-- Create the container layout data !--&gt;<br />
+    &lt;ui:with type=&quot;com.sencha.gxt.widget.core.client.container.VerticalLayoutContainer.VerticalLayoutData&quot;<br />
+             field=&quot;verticalLayoutData&quot;&gt;<br />
+        &lt;ui:attributes width=&quot;1&quot; height=&quot;1&quot;/&gt;<br />
+    &lt;/ui:with&gt;<br />
+<br />
+<br />
+    &lt;!-- Create the widget !--&gt;<br />
+    &lt;container:VerticalLayoutContainer&gt;<br />
+        &lt;container:child&gt;<br />
+            &lt;toolbar:ToolBar&gt;<br />
+                &lt;button:TextButton text=&quot;{messages.createDatasetAction}&quot; ui:field=&quot;createDatasetButton&quot;/&gt;<br />
+                &lt;button:TextButton text=&quot;{messages.deleteDatasetAction}&quot; ui:field=&quot;deleteDatasetButton&quot;/&gt;<br />
+            &lt;/toolbar:ToolBar&gt;<br />
+        &lt;/container:child&gt;<br />
+        &lt;container:child layoutData=&quot;{verticalLayoutData}&quot;&gt;<br />
+            &lt;grid:Grid store=&quot;{datasetStore}&quot; cm=&quot;{columnModel}&quot; view=&quot;{gridView}&quot; ui:field=&quot;datasetGrid&quot;/&gt;<br />
+        &lt;/container:child&gt;<br />
+    &lt;/container:VerticalLayoutContainer&gt;<br />
+&lt;/ui:UiBinder&gt;<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+==============================LocationAdministration<br />
+&lt;!DOCTYPE ui:UiBinder SYSTEM &quot;http://dl.google.com/gwt/DTD/xhtml.ent&quot;&gt;<br />
+&lt;ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'<br />
+             xmlns:container='urn:import:com.sencha.gxt.widget.core.client.container'<br />
+             xmlns:toolbar='urn:import:com.sencha.gxt.widget.core.client.toolbar'<br />
+             xmlns:button='urn:import:com.sencha.gxt.widget.core.client.button'&gt;<br />
+<br />
+<br />
+    &lt;!-- Create the widget !--&gt;<br />
+    &lt;container:VerticalLayoutContainer&gt;<br />
+        &lt;container:child&gt;<br />
+            &lt;toolbar:ToolBar&gt;<br />
+                &lt;button:TextButton&gt;Create&lt;/button:TextButton&gt;<br />
+                &lt;button:TextButton&gt;Delete&lt;/button:TextButton&gt;<br />
+            &lt;/toolbar:ToolBar&gt;<br />
+        &lt;/container:child&gt;<br />
+    &lt;/container:VerticalLayoutContainer&gt;<br />
+&lt;/ui:UiBinder&gt;<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+=============================RegionAdministration<br />
+&lt;!DOCTYPE ui:UiBinder SYSTEM &quot;http://dl.google.com/gwt/DTD/xhtml.ent&quot;&gt;<br />
+&lt;ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'<br />
+             xmlns:container='urn:import:com.sencha.gxt.widget.core.client.container'<br />
+             xmlns:toolbar='urn:import:com.sencha.gxt.widget.core.client.toolbar'<br />
+             xmlns:button='urn:import:com.sencha.gxt.widget.core.client.button'&gt;<br />
+<br />
+<br />
+    &lt;!-- Create the widget !--&gt;<br />
+    &lt;container:VerticalLayoutContainer&gt;<br />
+        &lt;container:child&gt;<br />
+            &lt;toolbar:ToolBar&gt;<br />
+                &lt;button:TextButton&gt;Create&lt;/button:TextButton&gt;<br />
+                &lt;button:TextButton&gt;Delete&lt;/button:TextButton&gt;<br />
+            &lt;/toolbar:ToolBar&gt;<br />
+        &lt;/container:child&gt;<br />
+    &lt;/container:VerticalLayoutContainer&gt;<br />
+&lt;/ui:UiBinder&gt;<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+==========================UserAdministration<br />
+&lt;!DOCTYPE ui:UiBinder SYSTEM &quot;http://dl.google.com/gwt/DTD/xhtml.ent&quot;&gt;<br />
+&lt;ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'<br />
+             xmlns:container='urn:import:com.sencha.gxt.widget.core.client.container'<br />
+             xmlns:toolbar='urn:import:com.sencha.gxt.widget.core.client.toolbar'<br />
+             xmlns:button='urn:import:com.sencha.gxt.widget.core.client.button'<br />
+             xmlns:grid='urn:import:com.sencha.gxt.widget.core.client.grid'&gt;<br />
+<br />
+<br />
+    &lt;!-- Create the messages interface for i18n !--&gt;<br />
+    &lt;ui:with type=&quot;com.firecracker.hotelsfa.client.system.dataset.screen.UserAdministrationMessages&quot; field=&quot;messages&quot;/&gt;<br />
+<br />
+<br />
+    &lt;!-- Create the dataset store for the grid !--&gt;<br />
+    &lt;ui:with type=&quot;com.sencha.gxt.data.shared.ListStore&quot; field=&quot;userStore&quot;/&gt;<br />
+<br />
+<br />
+    &lt;!-- Create the column model !--&gt;<br />
+    &lt;ui:with type=&quot;com.sencha.gxt.widget.core.client.grid.ColumnModel&quot; field=&quot;columnModel&quot;/&gt;<br />
+<br />
+<br />
+    &lt;!-- Create the grid view !--&gt;<br />
+    &lt;ui:with type=&quot;com.sencha.gxt.widget.core.client.grid.GridView&quot; field=&quot;gridView&quot;&gt;<br />
+        &lt;ui:attributes stripeRows=&quot;true&quot; columnLines=&quot;true&quot;/&gt;<br />
+    &lt;/ui:with&gt;<br />
+<br />
+<br />
+    &lt;!-- Create the container layout data !--&gt;<br />
+    &lt;ui:with type=&quot;com.sencha.gxt.widget.core.client.container.VerticalLayoutContainer.VerticalLayoutData&quot;<br />
+             field=&quot;verticalLayoutData&quot;&gt;<br />
+        &lt;ui:attributes width=&quot;1&quot; height=&quot;1&quot;/&gt;<br />
+    &lt;/ui:with&gt;<br />
+<br />
+<br />
+    &lt;!-- Create the widget !--&gt;<br />
+    &lt;container:VerticalLayoutContainer&gt;<br />
+        &lt;container:child&gt;<br />
+            &lt;toolbar:ToolBar&gt;<br />
+                &lt;button:TextButton text=&quot;{messages.createUserAction}&quot; ui:field=&quot;createUserButton&quot;/&gt;<br />
+                &lt;button:TextButton text=&quot;{messages.deleteUserAction}&quot; ui:field=&quot;deleteUserButton&quot;/&gt;<br />
+            &lt;/toolbar:ToolBar&gt;<br />
+        &lt;/container:child&gt;<br />
+        &lt;container:child layoutData=&quot;{verticalLayoutData}&quot;&gt;<br />
+            &lt;grid:Grid store=&quot;{userStore}&quot; cm=&quot;{columnModel}&quot; view=&quot;{gridView}&quot; ui:field=&quot;userGrid&quot;/&gt;<br />
+        &lt;/container:child&gt;<br />
+    &lt;/container:VerticalLayoutContainer&gt;<br />
+&lt;/ui:UiBinder&gt;</div>
+
+
+	<div style="padding:10px">
+
+	
+
+	
+
+	
+		<fieldset class="fieldset">
+			<legend>Attached Images</legend>
+			<ul>
+			<li>
+	<img class="inlineimg" src="/jpg.gif" alt="File Type: jpg" />
+	<a href="http://www.sencha.com/forum/attachment.php?attachmentid=42848&amp;d=1364938845">Screen Shot 2013-04-02 at 5.22.40 PM.jpg&lrm;</a> 
+(28.1 KB)
+</li> 
+			</ul>
+			</fieldset>
+	
+
+	
+
+	</div>
+ ]]></content>
+			<category domain="http://www.sencha.com/forum/forumdisplay.php?100-Sencha-GXT-Q-amp-A"><![CDATA[Sencha GXT Q&A]]></category>
+			<author>phickey</author>
+			<guid isPermaLink="true">http://www.sencha.com/forum/showthread.php?260297-Grid-does-not-size-properly</guid>
+		</item>
+		<item>
+			<title>Exporting MVC components.</title>
+			<link>http://www.sencha.com/forum/showthread.php?260294-Exporting-MVC-components.&amp;goto=newpost</link>
+			<pubDate>Tue, 02 Apr 2013 20:31:31 GMT</pubDate>
+			<description>Hi, 
+ 
+I have a MVC application and I would like to export some element as components so I can reuse them in other projects. My setup is as follow:...</description>
+			<content><![CDATA[<div>Hi,<br />
+<br />
+I have a MVC application and I would like to export some element as components so I can reuse them in other projects. My setup is as follow: one top-level view, one controller that owns that view, some stores and models used by those stores.<br />
+<br />
+If I try to export the controller to a file, I get only the controller, not any associated view, or stores, or models. Is this the expected behaviour?<br />
+<br />
+On the other hand, if I export the view, then I get the view, the stores, and the models, but the models have all their default names, that is, &quot;Model 1&quot; and the same happend with their fields, they are named &quot;field1&quot;, &quot;field&quot; (although the name property is correct), etc. This sounds like this entry in the forums: <a href="http://www.sencha.com/forum/showthread.php?219602" target="_blank">Import model XDC shows default names MyField1, MyField2 etc</a> but if was fixed in 2.1 (and I am currently using 2.2)<br />
+<br />
+Thanks</div>
+
+ ]]></content>
+			<category domain="http://www.sencha.com/forum/forumdisplay.php?97-Sencha-Architect-2.x-Bugs">Sencha Architect 2.x: Bugs</category>
+			<author>oscarpoblacion</author>
+			<guid isPermaLink="true">http://www.sencha.com/forum/showthread.php?260294-Exporting-MVC-components.</guid>
+		</item>
+		<item>
+			<title>Animation runs great at first but then stutters and overlaps</title>
+			<link>http://www.sencha.com/forum/showthread.php?260293-Animation-runs-great-at-first-but-then-stutters-and-overlaps&amp;goto=newpost</link>
+			<pubDate>Tue, 02 Apr 2013 20:28:00 GMT</pubDate>
+			<description><![CDATA[Running into an odd problem. &nbsp;We've exported an animation that occasionally stutters and stops and then starts again....]]></description>
+			<content><![CDATA[<div>Running into an odd problem. &amp;nbsp;We've exported an animation that occasionally stutters and stops and then starts again. &amp;nbsp;Unfortunately&amp;nbsp;we can't seem to pinpoint it to a specific frame, we're guessing it's processor dependent or similar. &amp;nbsp;&lt;br&gt;&lt;br&gt;You can see the live animation here at &quot;&lt;a data-cke-saved-href=&quot;http://www.adclub.org&quot; href=&quot;http://www.adclub.org&quot;&gt;adclub.org&lt;/a&gt;&quot;, at the top of the page. If you watch it through to the end where it resents to the first frame you'll see sometimes it stops abruptly to go back to the &quot;100 Celebrating 100 Years of Building Brands in Boston&quot;. &amp;nbsp;Sometimes the frames will overlap each other (we're using transparent PNGs) as shown in the screenshot below.&lt;br&gt;&lt;br&gt;Thank you in advance.&lt;br&gt;&lt;br&gt;&lt;img src=&quot;http://www.sencha.com/forum/attachment.php?attachmentid=42845&amp;amp;stc=1&quot; attachmentid=&quot;42845&quot; alt=&quot;&quot; id=&quot;vbattach_42845&quot; class=&quot;previewthumb&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;</div>
+
+
+	<div style="padding:10px">
+
+	
+
+	
+
+	
+		<fieldset class="fieldset">
+			<legend>Attached Images</legend>
+			<ul>
+			<li>
+	<img class="inlineimg" src="/jpg.gif" alt="File Type: jpg" />
+	<a href="http://www.sencha.com/forum/attachment.php?attachmentid=42845&amp;d=1364934313">screengrab.jpg&lrm;</a> 
+(23.7 KB)
+</li> 
+			</ul>
+			</fieldset>
+	
+
+	
+
+	</div>
+ ]]></content>
+			<category domain="http://www.sencha.com/forum/forumdisplay.php?64-Sencha-Animator-Help-amp-Discussion"><![CDATA[Sencha Animator Help & Discussion]]></category>
+			<author>mjolnier</author>
+			<guid isPermaLink="true">http://www.sencha.com/forum/showthread.php?260293-Animation-runs-great-at-first-but-then-stutters-and-overlaps</guid>
+		</item>
+		<item>
+			<title><![CDATA[[OPEN] Ext.data.Operation callback called with 2 arguments instead of 3]]></title>
+			<link>http://www.sencha.com/forum/showthread.php?260292-Ext.data.Operation-callback-called-with-2-arguments-instead-of-3&amp;goto=newpost</link>
+			<pubDate>Tue, 02 Apr 2013 20:06:45 GMT</pubDate>
+			<description><![CDATA[Personally  I'd be fine with you just changing the docs.  This has been broken since 2011, so it isn't like anyone is using it the way you have...]]></description>
+			<content><![CDATA[<div>Personally  I'd be fine with you just changing the docs.  This has been broken since 2011, so it isn't like anyone is using it the way you have documented<br />
+<br />
+<a href="http://docs.sencha.com/ext-js/4-1/#!/api/Ext.data.Operation" target="_blank">http://docs.sencha.com/ext-js/4-1/#!...data.Operation</a><br />
+<br />
+The 3rd param is NOT passed to <b>callback</b> and isn't really needed. Either way, the code or the docs need to be fixed, the comments are the only thing that stops this from wasting lots of people's time.</div>
+
+ ]]></content>
+			<category domain="http://www.sencha.com/forum/forumdisplay.php?80-Ext-Bugs">Ext:Bugs</category>
+			<author>mark0978</author>
+			<guid isPermaLink="true">http://www.sencha.com/forum/showthread.php?260292-Ext.data.Operation-callback-called-with-2-arguments-instead-of-3</guid>
+		</item>
+		<item>
+			<title><![CDATA[[OPEN] [Ext 4.x] Using the constrainTo Property with a Region is broken in ComponentDragger]]></title>
+			<link>http://www.sencha.com/forum/showthread.php?260291-Ext-4.x-Using-the-constrainTo-Property-with-a-Region-is-broken-in-ComponentDragger&amp;goto=newpost</link>
+			<pubDate>Tue, 02 Apr 2013 19:36:08 GMT</pubDate>
+			<description>Hey All, 
+ 
+When I am using a Region defined constrainTo property the Region constantly is adjusted and shrinking.  I found the fix in the...</description>
+			<content><![CDATA[<div>Hey All,<br />
+<br />
+When I am using a Region defined constrainTo property the Region constantly is adjusted and shrinking.  I found the fix in the calculateConstrainRegion function of ComponentDragger.  The me.initialConstainTo is being set equal to c and then c is adjusted which changes initialConstainTo.  then everytime you drag the element it adjusts the constrainTo Region even more.  To fix this we need a copy of the initial Reagion not the pointer to the config that will keep getting adjusted, i.e. -  me.initialConstainTo.copy(). (or something of the sorts)<br />
+<br />
+Thanks,<br />
+<br />
+UGA_Zimma</div>
+
+ ]]></content>
+			<category domain="http://www.sencha.com/forum/forumdisplay.php?80-Ext-Bugs">Ext:Bugs</category>
+			<author>UGA_Zimma</author>
+			<guid isPermaLink="true">http://www.sencha.com/forum/showthread.php?260291-Ext-4.x-Using-the-constrainTo-Property-with-a-Region-is-broken-in-ComponentDragger</guid>
+		</item>
+		<item>
+			<title>How does a Java/JSP/JEE developer get started with Ext-Js?</title>
+			<link>http://www.sencha.com/forum/showthread.php?260290-How-does-a-Java-JSP-JEE-developer-get-started-with-Ext-Js&amp;goto=newpost</link>
+			<pubDate>Tue, 02 Apr 2013 19:31:38 GMT</pubDate>
+			<description>Hi all, 
+ 
+I am really liking what I am seeing that ext-js provides. However, I am a long time JEE5/6 JSP/Struts/MVC sort of developer, where by I...</description>
+			<content><![CDATA[<div>Hi all,<br />
+<br />
+I am really liking what I am seeing that ext-js provides. However, I am a long time JEE5/6 JSP/Struts/MVC sort of developer, where by I built dynamic pages with JSP, some html, jquery (or prototype). However, I am more of the java/back end side of things, and the html5/css3 scares me away because of all the browser/platform/layout issues to worry about. Thus, ext-js really got my interest because it seems as if you build the entire UI with nothing but javascript and ext-js widgets... is this the case?<br />
+<br />
+So, my normal project that I set up in Eclipse 4.x typically is a JEE layout, with a build.xml ant script (not a maven fan at this time) that assembles a WAR file that I then deploy to tomcat or glassfish locally. The entire cycle including my back end code takes about 4 to 7 seconds for each deploy loop, so it's relatively fast. Once I figure out ext-js and how to work with it, I will turn my JRebel back on which should make it even faster.<br />
+<br />
+Anyway, I am reading through the Learning Ext-Js 4 book and have things working, but I am a little lost on exactly how I should be using Ext-Js along side a JEE project. Right now I am simply including the ext-all.css and ext-all.js files, and my own app.js file (I plan to &quot;master&quot; name spacing soon and do that correctly) and using the Ext.onReady() to set things up. Ideally I want a desktop like UI, single page (no form submits that reload the UI.. all ajax based, quick UI panel hide/shows, fancy stuff like that), that works with my REST api that I have for the server side (thus hopefully I can configure the ext-js to make requests to my server rest api for various back end things like creating/saving/deleting/retrieving data). <br />
+<br />
+I suspect what I am doing is not far off.. but when I see some examples of those using something like Aptana or the Sencha arhcitect, I don't see any sort of server side tech like java, ruby or .net for example where you typically build/assemble then deploy the app. Some of the project examples seem to be set up as if you're just building the UI piece as a separate ext-js project by itself, and the server side piece would be separate.<br />
+<br />
+Anyway, so what I am really asking is for anyone that is like me.. an experienced java/jee guy that may have done some old jsp/struts UI stuff back in the day and is now using ext-js for the UI, to maybe provide a little bit of info on how you got started, what may be different or what I'll need to get used to.. think differently perhaps, on how to roll with ext-js and my java back end.<br />
+<br />
+Thank you.</div>
+
+ ]]></content>
+			<category domain="http://www.sencha.com/forum/forumdisplay.php?81-Ext-Discussion">Ext: Discussion</category>
+			<author>andjarnic</author>
+			<guid isPermaLink="true">http://www.sencha.com/forum/showthread.php?260290-How-does-a-Java-JSP-JEE-developer-get-started-with-Ext-Js</guid>
+		</item>
+	<item><title>Hallo</title><link>sadhashdkjdhkjhakjh</link><pubDate>Sun, 25 Jan 2015 11:45:28 +0000</pubDate><author>dsfdsfdsf</author><category>Local:notes</category><content>sadsadsadsadasdsadsadasdadgsdgsdfdsf</content></item><item><title>ja</title><link>daswerty</link><pubDate>Sun, 25 Jan 2015 11:58:06 +0000</pubDate><author>sarah</author><category>Local:notes</category><content>zeg ja tegen je kinderen zeg ja tegen je kolegaas zeg ja tegen je broers/zussen want ja zegen is het fijnste</content></item><item><title>sarah gaat doese</title><link>wasstraat</link><pubDate>Sun, 25 Jan 2015 12:05:19 +0000</pubDate><author>mama</author><category>Local:notes</category><content>sarah is bijna 8 jaar zij krijgt een mooie bed en zij ga naar groep 5 jjjjjj</content></item></channel>
+</rss>
